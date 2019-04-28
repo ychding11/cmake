@@ -1,4 +1,4 @@
-# - try to find DirectX include dirs and libraries
+# - Try to find DirectX include dirs and libraries on Windows 10 Platform
 # - FindDirectX.cmake
 # - (DirectX_D3D11_INCLUDE_DIR AND DirectX_D3D11_LIBRARY AND DirectX_D3D11_COMPILER )
 
