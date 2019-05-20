@@ -1,5 +1,6 @@
-cmake_minimum_required (VERSION 2.8)
-project (MyTest)
+cmake_minimum_required (VERSION 3.6.3)
+
+project (MyTest) 
 
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON) 
 
@@ -12,8 +13,7 @@ file(GLOB SRC_FILES
     ${CMAKE_SOURCE_DIR}/src/*.cpp
 )
 
-file(GLOB EXT_FILES
-)
+file(GLOB EXT_FILES )
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/src/
@@ -85,8 +85,15 @@ MESSAGE(STATUS "Console is visible")
 #--------------------------------------------------------------------
 # target 
 #--------------------------------------------------------------------
-SET(EXE_NAME "MyTest")
+SET(EXE_NAME "PPM")
 ADD_EXECUTABLE(${EXE_NAME} ${SRC_FILES} ${EXT_FILES})
+
+#--------------------------------------------------------------------
+# set is as vs startup project 
+#--------------------------------------------------------------------
+SET_PROPERTY (DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${EXE_NAME}) 
+GET_PROPERTY (STARTUP_SET DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SET)
+MESSAGE(STATUS "VS_STARTUP_PROJECT is set ? " ${STARTUP_SET})
 
 #--------------------------------------------------------------------
 # output dirs, properties of target
@@ -102,4 +109,4 @@ set_target_properties(${EXE_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CM
 #######################################################################################
 ##For reference
 ##https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html#target-properties
-#######################################################################################
+####################################################################################### 
