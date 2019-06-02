@@ -66,6 +66,16 @@ if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 endif()
 
+## add c++17 complile flag on vs
+if (MSVC_VERSION GREATER_EQUAL "1900")
+    include(CheckCXXCompilerFlag)
+    CHECK_CXX_COMPILER_FLAG("/std:c++17" _cpp_17_flag_supported)
+    if (_cpp_17_flag_supported)
+		message(STATUS "C++ 17 is suppoted in VS")
+        add_compile_options("/std:c++17")
+    endif()
+endif()
+
 SET(LINK_OPTIONS " ")
 
 #--------------------------------------------------------------------
@@ -89,7 +99,7 @@ SET(EXE_NAME "PPM")
 ADD_EXECUTABLE(${EXE_NAME} ${SRC_FILES} ${EXT_FILES})
 
 #--------------------------------------------------------------------
-# set is as vs startup project 
+# set as vs startup project 
 #--------------------------------------------------------------------
 SET_PROPERTY (DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${EXE_NAME}) 
 GET_PROPERTY (STARTUP_SET DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SET)
